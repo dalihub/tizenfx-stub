@@ -1,8 +1,30 @@
-#include <stdio.h>
 #include <linux/limits.h>
+#include <cstdio>
+#include <cstring>
+#include <cstdlib>
 
 #define TIZEN_PATH_MAX PATH_MAX
-const int APP_ERROR_NONE=0;
+
+
+extern "C" {
+
+
+typedef enum {
+  APP_RESOURCE_TYPE_IMAGE = 0, /**<Image*/
+  APP_RESOURCE_TYPE_LAYOUT, /**<Edje*/
+  APP_RESOURCE_TYPE_SOUND, /**<Sound*/
+  APP_RESOURCE_TYPE_BIN, /**<Bin*/
+  APP_RESOURCE_TYPE_MIN = APP_RESOURCE_TYPE_IMAGE,
+  APP_RESOURCE_TYPE_MAX = APP_RESOURCE_TYPE_BIN,
+/*add values between APP_RESOURCE_TYPE_MIN and APP_RESOURCE_TYPE_MAX*/
+} app_resource_e;
+
+typedef enum {
+  APP_DEVICE_ORIENTATION_0 = 0, /**< The device is oriented in a natural position */
+  APP_DEVICE_ORIENTATION_90 = 90, /**< The device's left side is at the top */
+  APP_DEVICE_ORIENTATION_180 = 180, /**< The device is upside down */
+  APP_DEVICE_ORIENTATION_270 = 270, /**< The device's right side is at the top */
+} app_device_orientation_e;
 
 typedef enum {
   APP_EVENT_LOW_MEMORY, /**< The low memory event */
@@ -13,6 +35,23 @@ typedef enum {
   APP_EVENT_SUSPENDED_STATE_CHANGED, /**< The suspended state changed event of the application*/
   APP_EVENT_UPDATE_REQUESTED, /**< The update requested event (Since 3.0)*/
 } app_event_type_e;
+
+typedef enum {
+  APP_ERROR_NONE = 0,
+  APP_ERROR_INVALID_PARAMETER,
+  APP_ERROR_OUT_OF_MEMORY,
+  APP_ERROR_INVALID_CONTEXT,
+  APP_ERROR_NO_SUCH_FILE,
+  APP_ERROR_NOT_SUPPORTED,
+  APP_ERROR_ALREADY_RUNNING,
+  APP_ERROR_PERMISSION_DENIED
+} app_error_e;
+
+struct app_event_info {
+  app_event_type_e type;
+  void *value;
+};
+typedef struct app_event_info *app_event_info_h;
 
 // [DllImport(Libraries.AppCommon, EntryPoint = "app_get_id")]
 // internal static extern ErrorCode AppGetId(out string appId);
@@ -117,7 +156,7 @@ char* app_get_external_shared_data_path(void)
 // internal static extern ErrorCode AppGetVersion(out string version);
 int app_get_version(char** version)
 {
-  version = strdup("1.1.1");
+  *version = strdup("1.1.1");
   return APP_ERROR_NONE;
 }
 
@@ -149,16 +188,6 @@ typedef enum {
   APP_EVENT_LOW_BATTERY_CRITICAL_LOW, /**< The battery status is under 5% */
 } app_event_low_battery_status_e;
 
-static int __app_convert_low_battery(void *val)
-{
-  switch (*(int *)val) {
-  case VCONFKEY_SYSMAN_BAT_POWER_OFF:
-    return APP_EVENT_LOW_BATTERY_POWER_OFF;
-  case VCONFKEY_SYSMAN_BAT_CRITICAL_LOW:
-  default:
-    return -1;
-  }
-}
 int app_event_get_low_battery_status(app_event_info_h event_info, app_event_low_battery_status_e *status)
 {
   int ret;
@@ -183,7 +212,7 @@ int app_event_get_language(app_event_info_h event_info, char **lang)
   if (event_info->type != APP_EVENT_LANGUAGE_CHANGED)
     return APP_ERROR_INVALID_CONTEXT;
 
-  *lang = strdup(event_info->value);
+  *lang = strdup(reinterpret_cast<const char*>(event_info->value));
 
   return APP_ERROR_NONE;
 }
@@ -198,7 +227,7 @@ int app_event_get_region_format(app_event_info_h event_info, char **region)
   if (event_info->type != APP_EVENT_REGION_FORMAT_CHANGED)
     return APP_ERROR_INVALID_CONTEXT;
 
-  *region = strdup(event_info->value);
+  *region = strdup(reinterpret_cast<const char*>(event_info->value));
 
   return APP_ERROR_NONE;
 }
@@ -219,12 +248,15 @@ int app_resource_manager_get(app_resource_e type, const char *id, char **path)
 int app_event_get_device_orientation(app_event_info_h event_info, app_device_orientation_e *orientation)
 {
   if (event_info == NULL || orientation == NULL)
-    return APP_ERROR_INVALID_PARAMETER)
+    return APP_ERROR_INVALID_PARAMETER;
 
   if (event_info->type != APP_EVENT_DEVICE_ORIENTATION_CHANGED)
     return APP_ERROR_INVALID_CONTEXT;
 
-  *orientation = 0;//PORTRAIT
+  *orientation = APP_DEVICE_ORIENTATION_0;
 
   return APP_ERROR_NONE;
+}
+
+
 }
