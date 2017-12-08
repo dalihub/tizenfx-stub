@@ -1,7 +1,7 @@
 /*
  * slp-pkgmgr
  *
- * Copyright (c) 2000 - 2011 Samsung Electronics Co., Ltd. All rights reserved.
+ * Copyright (c) 2000 - 2017 Samsung Electronics Co., Ltd. All rights reserved.
  *
  * Contact: Jayoun Lee <airjany@samsung.com>, Sewook Park <sewook7.park@samsung.com>,
  * Jaeho Lee <jaeho81.lee@samsung.com>, Shobhit Srivastava <shobhit.s@samsung.com>

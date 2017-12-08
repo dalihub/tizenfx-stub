@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011 - 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2011 - 2017 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@
 #ifndef __TIZEN_APPFW_APP_MANAGER_H
 #define __TIZEN_APPFW_APP_MANAGER_H
 
-//#include <tizen.h>
+#include <tizen.h>
 
 #include <app_context.h>
 #include <app_info.h>

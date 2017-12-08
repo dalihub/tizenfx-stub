@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011 - 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2011 - 2017 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -39,8 +39,8 @@ extern "C" {
  * @since_tizen 3.0
  */
 typedef enum {
-	APP_CONTEXT_STATUS_LAUNCHED,	/**< The application is launched */
-	APP_CONTEXT_STATUS_TERMINATED,	/**< The application is terminated */
+  APP_CONTEXT_STATUS_LAUNCHED,  /**< The application is launched */
+  APP_CONTEXT_STATUS_TERMINATED,  /**< The application is terminated */
 } app_context_status_e;
 
 /**
@@ -60,12 +60,12 @@ typedef void (*app_manager_app_context_status_cb)(app_context_h app_context, app
  * @privlevel platform
  * @privilege %http://tizen.org/privilege/appmanager.kill
  * @param[in]   app_context  The application context
- * @return	@c 0 on success,
+ * @return  @c 0 on success,
  *              otherwise a negative error value
- * @retval	#APP_MANAGER_ERROR_NONE			Successful
- * @retval	#APP_MANAGER_ERROR_INVALID_PARAMETER	Invalid parameter
- * @retval	#APP_MANAGER_ERROR_REQUEST_FAILED	Internal terminate error
- * @retval	#APP_MANAGER_ERROR_PERMISSION_DENIED	Permission denied
+ * @retval  #APP_MANAGER_ERROR_NONE       Successful
+ * @retval  #APP_MANAGER_ERROR_INVALID_PARAMETER  Invalid parameter
+ * @retval  #APP_MANAGER_ERROR_REQUEST_FAILED   Internal terminate error
+ * @retval  #APP_MANAGER_ERROR_PERMISSION_DENIED  Permission denied
  */
 int app_manager_terminate_app(app_context_h app_context);
 
@@ -77,13 +77,13 @@ int app_manager_terminate_app(app_context_h app_context);
  * @param[in]     app_id  The ID of the application
  * @param[in]     display The display flag to enable/disable the splash screen
  *
- * @return	@c 0 on success,
- *		otherwise a negative error value
- * @retval	#APP_MANAGER_ERROR_NONE			Successful
- * @retval	#APP_MANAGER_ERROR_INVALID_PARAMETER	Invalid parameter
- * @retval	#APP_MANAGER_ERROR_OUT_OF_MEMORY	Out of memory
- * @retval	#APP_MANAGER_ERROR_PERMISSION_DENIED	Permission denied
- * @retval	#APP_MANAGER_ERROR_IO_ERROR		Internal I/O error
+ * @return  @c 0 on success,
+ *    otherwise a negative error value
+ * @retval  #APP_MANAGER_ERROR_NONE       Successful
+ * @retval  #APP_MANAGER_ERROR_INVALID_PARAMETER  Invalid parameter
+ * @retval  #APP_MANAGER_ERROR_OUT_OF_MEMORY  Out of memory
+ * @retval  #APP_MANAGER_ERROR_PERMISSION_DENIED  Permission denied
+ * @retval  #APP_MANAGER_ERROR_IO_ERROR     Internal I/O error
  */
 int app_manager_set_splash_screen_display(const char *app_id, bool display);
 
@@ -91,13 +91,13 @@ int app_manager_set_splash_screen_display(const char *app_id, bool display);
  * @brief Registers a callback function to be invoked when the application change status.
  * @since_tizen 3.0
  * @param[in]   callback        The callback function to register
- * @param[in]	appid           The appid to get status
- * @param[in]	user_data       The user data to be passed to the callback function
- * @return	@c 0 on success,
- *		otherwise a negative error value
- * @retval	#APP_MANAGER_ERROR_NONE			Successful
- * @retval	#APP_MANAGER_ERROR_INVALID_PARAMETER	Invalid parameter
- * @retval	#APP_MANAGER_ERROR_IO_ERROR		Internal I/O error
+ * @param[in]   appid           The appid to get status
+ * @param[in]   user_data       The user data to be passed to the callback function
+ * @return  @c 0 on success,
+ *    otherwise a negative error value
+ * @retval  #APP_MANAGER_ERROR_NONE       Successful
+ * @retval  #APP_MANAGER_ERROR_INVALID_PARAMETER  Invalid parameter
+ * @retval  #APP_MANAGER_ERROR_IO_ERROR     Internal I/O error
  * @retval      #APP_MANAGER_ERROR_OUT_OF_MEMORY        Out of memory
  * @post It will invoke app_manager_app_context_event_cb() when the application is launched or terminated.
  * @see app_manager_app_context_status_cb()
@@ -169,11 +169,11 @@ int app_manager_detach_window(const char *app_id);
  * @brief Unregisters the callback function.
  * @since_tizen 3.0
  * @param[in]   callback        The registered callback function
- * @param[in]	appid           The registered appid
- * @return	@c 0 on success,
- *		otherwise a negative error value
- * @retval	#APP_MANAGER_ERROR_NONE			Successful
- * @retval	#APP_MANAGER_ERROR_INVALID_PARAMETER	Invalid parameter
+ * @param[in]   appid           The registered appid
+ * @return  @c 0 on success,
+ *    otherwise a negative error value
+ * @retval  #APP_MANAGER_ERROR_NONE       Successful
+ * @retval  #APP_MANAGER_ERROR_INVALID_PARAMETER  Invalid parameter
  * @see app_manager_app_context_status_cb()
  */
 int app_manager_unset_app_context_status_cb(app_manager_app_context_status_cb callback, const char *appid);
@@ -203,4 +203,3 @@ int app_manager_foreach_visible_app_context(app_manager_app_context_cb callback,
 #endif
 
 #endif /* __TIZEN_APPFW_APP_MANAGER_EXTENSION_H */
-

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011 - 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2011 - 2017 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -54,23 +54,23 @@ int app_context_get_instance_id(app_context_h app_context, char **instance_id);
 int app_context_get_app_context_by_pid(pid_t pid, app_context_h *app_context);
 
 typedef struct app_manager_event_info_s {
-	int req_id;
-	app_manager_event_type_e event_type;
-	app_manager_event_state_e event_state;
-	struct app_manager_event_info_s *next;
+  int req_id;
+  app_manager_event_type_e event_type;
+  app_manager_event_state_e event_state;
+  struct app_manager_event_info_s *next;
 } app_manager_event_info;
 
 typedef struct app_manager_event_s {
-	int req_id;
-	pkgmgr_client *pc;
-	app_manager_event_cb event_cb;
-	void *user_data;
-	app_manager_event_info *head;
+  int req_id;
+  pkgmgr_client *pc;
+  app_manager_event_cb event_cb;
+  void *user_data;
+  app_manager_event_info *head;
 } app_manager_event;
 
 int app_event_handler(uid_t target_uid, int req_id,
-				const char *pkg_type, const char *pkgid, const char *appid,
-				const char *key, const char *val, const void *pmsg, void *data);
+        const char *pkg_type, const char *pkgid, const char *appid,
+        const char *key, const char *val, const void *pmsg, void *data);
 
 int convert_status_type(int status_type);
 

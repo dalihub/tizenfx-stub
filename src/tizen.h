@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2017 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -25,11 +25,11 @@
 #endif
 
 #ifndef TIZEN_DEPRECATED_API
-#	ifdef TIZEN_DEPRECATION
-#		define TIZEN_DEPRECATED_API __attribute__((__visibility__("default"), deprecated))
-#	else
-#		define TIZEN_DEPRECATED_API
-#	endif
+#   ifdef TIZEN_DEPRECATION
+#     define TIZEN_DEPRECATED_API __attribute__((__visibility__("default"), deprecated))
+#   else
+#     define TIZEN_DEPRECATED_API
+#   endif
 #endif
 
 #endif // __TIZEN_H__
