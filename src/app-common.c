@@ -16,14 +16,12 @@
 
 
 #include <linux/limits.h>
-#include <cstdio>
-#include <cstring>
-#include <cstdlib>
+#define _GNU_SOURCE
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
 #define TIZEN_PATH_MAX PATH_MAX
-
-
-extern "C" {
 
 
 typedef enum
@@ -205,7 +203,7 @@ int app_event_get_language(app_event_info_h event_info, char **lang)
   if (event_info->type != APP_EVENT_LANGUAGE_CHANGED)
     return APP_ERROR_INVALID_CONTEXT;
 
-  *lang = strdup(reinterpret_cast<const char*>(event_info->value));
+  *lang = strdup( (const char*)event_info->value );
 
   return APP_ERROR_NONE;
 }
@@ -218,7 +216,7 @@ int app_event_get_region_format(app_event_info_h event_info, char **region)
   if (event_info->type != APP_EVENT_REGION_FORMAT_CHANGED)
     return APP_ERROR_INVALID_CONTEXT;
 
-  *region = strdup(reinterpret_cast<const char*>(event_info->value));
+  *region = strdup((const char*)event_info->value);
 
   return APP_ERROR_NONE;
 }
@@ -240,7 +238,4 @@ int app_event_get_device_orientation(app_event_info_h event_info, app_device_ori
   *orientation = APP_DEVICE_ORIENTATION_0;
 
   return APP_ERROR_NONE;
-}
-
-
 }

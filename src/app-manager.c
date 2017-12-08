@@ -21,8 +21,6 @@
 #include <pthread.h>
 #include "app_manager_internal.h"
 
-extern "C"
-{
 
 struct app_context_s
 {
@@ -369,6 +367,4 @@ int app_info_metadata_filter_add (app_info_metadata_filter_h handle, const char 
 int app_info_metadata_filter_foreach (app_info_metadata_filter_h handle, app_info_filter_cb callback, void *user_data)
 {
   return 0;
-}
-
 }
