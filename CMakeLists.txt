@@ -1,4 +1,5 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
+CMAKE_POLICY(SET CMP0053 NEW) # Simplify variable reference and escape sequence evaluation
 
 SET(MAJORVER 0)
 SET(FULLVER 1)
