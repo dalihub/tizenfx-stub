@@ -1,4 +1,4 @@
-TizenFX Stubs
-=============
+TizenFX Stub
+============
 
-Stubs for the TizenFX repository to allow it to build on Ubuntu.
+Stubs to enable the TizenFX repository to build on Ubuntu.
