@@ -108,11 +108,22 @@ int app_get_name(char **name)
   return APP_ERROR_INVALID_PARAMETER;
 }
 
+#include <unistd.h>
+
 char* app_get_resource_path(void)
 {
-  const char* path=getenv("DESKTOP_PREFIX");
-  char* out;
-  int numChars = asprintf( &out, "%s/share/app", path );
+  char* out = 0;
+  char cwd[PATH_MAX];
+
+  if( getcwd(cwd, sizeof(cwd)) != 0 )
+  {
+    int numChars = asprintf( &out, "%s/res/", cwd );
+  }
+  else
+  {
+    perror("getcwd() error");
+  }
+
   return out;
 }
 
