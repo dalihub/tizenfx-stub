@@ -300,7 +300,9 @@ typedef enum {
   TIZEN_ERROR_OUT_OF_MEMORY = -ENOMEM, /**< Out of memory */
   TIZEN_ERROR_PERMISSION_DENIED = -EACCES, /**< Permission denied */
   TIZEN_ERROR_BAD_ADDRESS = -EFAULT, /**< Bad address */
+#ifdef ENOTBLK
   TIZEN_ERROR_BLOCK_DEVICE_REQUIRED = -ENOTBLK, /**< Block device required */
+#endif
   TIZEN_ERROR_RESOURCE_BUSY = -EBUSY, /**< Device or resource busy */
   TIZEN_ERROR_FILE_EXISTS = -EEXIST, /**< File exists */
   TIZEN_ERROR_CROSS_DEVICE_LINK = -EXDEV, /**< Cross-device link */
@@ -327,23 +329,41 @@ typedef enum {
   TIZEN_ERROR_DIR_NOT_EMPTY = -ENOTEMPTY, /**< Directory not empty */
   TIZEN_ERROR_TOO_MANY_SYMBOLIC_LINKS = -ELOOP, /**< Too many symbolic links encountered */
   TIZEN_ERROR_WOULD_BLOCK = TIZEN_ERROR_TRY_AGAIN, /**< Operation would block */
+#ifdef ELIBBAD
   TIZEN_ERROR_CORRUPTED_SHARED_LIB = -ELIBBAD, /**< Accessing a corrupted shared library */
+#endif
+#ifdef ELIBSCN
   TIZEN_ERROR_LIB_SECTION_CORRUPTED = -ELIBSCN, /**< .lib section in a.out corrupted */
+#endif
+#ifdef ELIBMAX
   TIZEN_ERROR_LINK_TOO_MANY_SHARED_LIB = -ELIBMAX, /**< Attempting to link in too many shared libraries */
+#endif
+#ifdef ELIBEXEC
   TIZEN_ERROR_SHARED_LIB_EXEC = -ELIBEXEC, /**< Cannot exec a shared library directly */
+#endif
   TIZEN_ERROR_ILLEGAL_BYTE_SEQ = -EILSEQ, /**< Illegal byte sequence */
+#ifdef ERESTART
   TIZEN_ERROR_SYSTEM_CALL_RESTART = -ERESTART, /**< Interrupted system call should be restarted */
+#endif
+#ifdef ESTRPIPE
   TIZEN_ERROR_STREAMS_PIPE = -ESTRPIPE, /**< Streams pipe error */
+#endif
+#ifdef EUSERS
   TIZEN_ERROR_TOO_MANY_USERS = -EUSERS, /**< Too many users */
+#endif
   TIZEN_ERROR_NON_SOCKET = -ENOTSOCK, /**< Socket operation on non-socket */
   TIZEN_ERROR_NO_DEST_ADDRESS = -EDESTADDRREQ, /**< Destination address required */
   TIZEN_ERROR_MSG_TOO_LONG = -EMSGSIZE, /**< Message too long */
   TIZEN_ERROR_PROTOCOL_WRONG_TYPE = -EPROTOTYPE, /**< Protocol wrong type for socket */
   TIZEN_ERROR_PROTOCOL_NOT_AVALIABLE = -ENOPROTOOPT, /**< Protocol not available */
   TIZEN_ERROR_PROTOCOL_NOT_SUPPORTED = -EPROTONOSUPPORT, /**< Protocol not supported */
+#ifdef ESOCKTNOSUPPORT
   TIZEN_ERROR_SOCKET_TYPE_NOT_SUPPORTED = -ESOCKTNOSUPPORT, /**< Socket type not supported */
+#endif
   TIZEN_ERROR_ENDPOINT_OPERATIN_NOT_SUPPORTED = -EOPNOTSUPP, /**< Operation not supported on transport endpoint */
+#ifdef EPFNOSUPPORT
   TIZEN_ERROR_PROTOCOL_FAMILY_NOT_SUPPORTED = -EPFNOSUPPORT, /**< Protocol family not supported */
+#endif
   TIZEN_ERROR_ADDRESS_FAMILY_NOT_SUPPORTED = -EAFNOSUPPORT, /**< Address family not supported by protocol */
   TIZEN_ERROR_ADDRES_IN_USE = -EADDRINUSE, /**< Address already in use */
   TIZEN_ERROR_CANNOT_ASSIGN_ADDRESS = -EADDRNOTAVAIL, /**< Cannot assign requested address */
@@ -355,28 +375,60 @@ typedef enum {
   TIZEN_ERROR_BUFFER_SPACE = -ENOBUFS, /**< No buffer space available */
   TIZEN_ERROR_ENDPOINT_CONNECTED = -EISCONN, /**< Transport endpoint is already connected */
   TIZEN_ERROR_ENDPOINT_NOT_CONNECTED = -ENOTCONN, /**< Transport endpoint is not connected */
+#ifdef ESHUTDOWN
   TIZEN_ERROR_ENDPOINT_SHUTDOWN = -ESHUTDOWN, /**< Cannot send after transport endpoint shutdown */
+#endif
+#ifdef ETOOMANYREFS
   TIZEN_ERROR_TOO_MANY_REFERENCES = -ETOOMANYREFS, /**< Too many references: cannot splice */
+#endif
   TIZEN_ERROR_CONNECTION_TIME_OUT = -ETIMEDOUT, /**< Connection timed out */
   TIZEN_ERROR_CONNECTION_REFUSED = -ECONNREFUSED, /**< Connection refused */
+#ifdef EHOSTDOWN
   TIZEN_ERROR_HOST_DOWN = -EHOSTDOWN, /**< Host is down */
+#endif
   TIZEN_ERROR_NO_ROUTE_TO_HOST = -EHOSTUNREACH, /**< No route to host */
   TIZEN_ERROR_ALREADY_IN_PROGRESS = -EALREADY, /**< Operation already in progress */
   TIZEN_ERROR_NOW_IN_PROGRESS = -EINPROGRESS, /**< Operation now in progress */
+#ifdef ESTALE
   TIZEN_ERROR_STALE_NFS_FILE_HANDLE = -ESTALE, /**< Stale NFS file handle */
+#endif
+#ifdef EUCLEAN
   TIZEN_ERROR_STRUCTURE_UNCLEAN = -EUCLEAN, /**< Structure needs cleaning */
+#endif
+#ifdef ENOTNAM
   TIZEN_ERROR_NOT_XENIX_NAMED_TYPE_FILE = -ENOTNAM, /**< Not a XENIX named type file */
+#endif
+#ifdef ENAVAIL
   TIZEN_ERROR_NO_XENIX_SEMAPHORES_AVAILABLE = -ENAVAIL, /**< No XENIX semaphores available */
+#endif
+#ifdef EISNAM
   TIZEN_ERROR_IS_NAMED_TYPE_FILE = -EISNAM, /**< Is a named type file */
+#endif
+#ifdef EREMOTEIO
   TIZEN_ERROR_REMOTE_IO = -EREMOTEIO, /**< Remote I/O error */
+#endif
+#ifdef EDQUOT
   TIZEN_ERROR_QUOTA_EXCEEDED = -EDQUOT, /**< Quota exceeded */
+#endif
+#ifdef ENOMEDIUM
   TIZEN_ERROR_NO_MEDIUM = -ENOMEDIUM, /**< No medium found */
+#endif
+#ifdef EMEDIUMTYPE
   TIZEN_ERROR_WRONG_MEDIUM_TYPE = -EMEDIUMTYPE, /**< Wrong medium type */
+#endif
   TIZEN_ERROR_CANCELED = -ECANCELED, /**< Operation Canceled */
+#ifdef ENOKEY
   TIZEN_ERROR_KEY_NOT_AVAILABLE = -ENOKEY, /**< Required key not available */
+#endif
+#ifdef EKEYEXPIRED
   TIZEN_ERROR_KEY_EXPIRED = -EKEYEXPIRED, /**< Key has expired */
+#endif
+#ifdef EKEYREVOKED
   TIZEN_ERROR_KEY_REVOKED = -EKEYREVOKED, /**< Key has been revoked */
+#endif
+#ifdef EKEYREJECTED
   TIZEN_ERROR_KEY_REJECTED = -EKEYREJECTED, /**< Key was rejected by service */
+#endif
   TIZEN_ERROR_OWNER_DEAD = -EOWNERDEAD, /**< Owner died (for robust mutexes) */
   TIZEN_ERROR_UNKNOWN = TIZEN_ERROR_MIN_PLATFORM_ERROR, /**< Unknown error */
   /* This is a place to add new errors here.

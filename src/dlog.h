@@ -32,6 +32,7 @@
 #include <string.h>
 #include <tizen_error.h>
 //#include "dlog-internal.h"
+#include "tizenfx_stub_api.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -134,7 +135,7 @@ int main(void)
 }
  * @endcode
  */
-int dlog_print(log_priority prio, const char *tag, const char *fmt, ...);
+TIZENFX_STUB_API int dlog_print(log_priority prio, const char *tag, const char *fmt, ...);
 
 
 /**
@@ -172,7 +173,7 @@ int main(void)
 }
  * @endcode
  */
-int dlog_vprint(log_priority prio, const char *tag, const char *fmt, va_list ap);
+TIZENFX_STUB_API int dlog_vprint(log_priority prio, const char *tag, const char *fmt, va_list ap);
 
 
 /**

@@ -18,8 +18,8 @@
 #ifndef __TIZEN_APPFW_APP_CONTEXT_H
 #define __TIZEN_APPFW_APP_CONTEXT_H
 
-#include <sys/types.h>
-#include <tizen.h>
+#include "unix_types.h"
+#include "tizenfx_stub_api.h"
 
 #define TIZEN_DEPRECATED_API
 
@@ -78,7 +78,7 @@ typedef enum {
  * @see app_manager_foreach_app_context()
  * @see app_manager_get_app_context()
  */
-int app_context_destroy(app_context_h app_context);
+TIZENFX_STUB_API int STDCALL app_context_destroy(app_context_h app_context);
 
 
 /**
@@ -94,7 +94,7 @@ int app_context_destroy(app_context_h app_context);
  * @retval  #APP_MANAGER_ERROR_INVALID_PARAMETER  Invalid parameter
  * @retval  #APP_MANAGER_ERROR_OUT_OF_MEMORY      Out of memory
  */
-int app_context_get_package(app_context_h app_context, char **package) TIZEN_DEPRECATED_API;
+TIZENFX_STUB_API int STDCALL app_context_get_package(app_context_h app_context, char **package) TIZEN_DEPRECATED_API;
 
 
 /**
@@ -109,7 +109,7 @@ int app_context_get_package(app_context_h app_context, char **package) TIZEN_DEP
  * @retval  #APP_MANAGER_ERROR_INVALID_PARAMETER  Invalid parameter
  * @retval  #APP_MANAGER_ERROR_OUT_OF_MEMORY      Out of memory
  */
-int app_context_get_app_id(app_context_h app_context, char **app_id);
+TIZENFX_STUB_API int STDCALL app_context_get_app_id(app_context_h app_context, char **app_id);
 
 
 /**
@@ -122,7 +122,7 @@ int app_context_get_app_id(app_context_h app_context, char **app_id);
  * @retval  #APP_MANAGER_ERROR_NONE               Successful
  * @retval  #APP_MANAGER_ERROR_INVALID_PARAMETER  Invalid parameter
  */
-int app_context_get_pid(app_context_h app_context, pid_t *pid);
+TIZENFX_STUB_API int STDCALL app_context_get_pid(app_context_h app_context, pid_t *pid);
 
 
 /**
@@ -137,7 +137,7 @@ int app_context_get_pid(app_context_h app_context, pid_t *pid);
  * @retval  #APP_MANAGER_ERROR_INVALID_PARAMETER  Invalid parameter
  * @retval  #APP_MANAGER_ERROR_OUT_OF_MEMORY      Out of memory
  */
-int app_context_get_package_id(app_context_h app_context, char **pkg_id);
+TIZENFX_STUB_API int STDCALL app_context_get_package_id(app_context_h app_context, char **pkg_id);
 
 
 /**
@@ -152,7 +152,7 @@ int app_context_get_package_id(app_context_h app_context, char **pkg_id);
  * @retval  #APP_MANAGER_ERROR_NONE               Successful
  * @retval  #APP_MANAGER_ERROR_INVALID_PARAMETER  Invalid parameter
  */
-int app_context_get_app_state(app_context_h app_context, app_state_e *state);
+TIZENFX_STUB_API int STDCALL app_context_get_app_state(app_context_h app_context, app_state_e *state);
 
 
 /**
@@ -166,7 +166,7 @@ int app_context_get_app_state(app_context_h app_context, app_state_e *state);
  * @retval  #APP_MANAGER_ERROR_NONE               Successful
  * @retval  #APP_MANAGER_ERROR_INVALID_PARAMETER  Invalid parameter
  */
-int app_context_is_terminated(app_context_h app_context, bool *terminated);
+TIZENFX_STUB_API int STDCALL app_context_is_terminated(app_context_h app_context, bool *terminated);
 
 
 /**
@@ -181,7 +181,7 @@ int app_context_is_terminated(app_context_h app_context, bool *terminated);
  * @retval  #APP_MANAGER_ERROR_NONE               Successful
  * @retval  #APP_MANAGER_ERROR_INVALID_PARAMETER  Invalid parameter
  */
-int app_context_is_equal(app_context_h lhs, app_context_h rhs, bool *equal);
+TIZENFX_STUB_API int STDCALL app_context_is_equal(app_context_h lhs, app_context_h rhs, bool *equal);
 
 
 /**
@@ -195,7 +195,7 @@ int app_context_is_equal(app_context_h lhs, app_context_h rhs, bool *equal);
  * @retval  #APP_MANAGER_ERROR_NONE               Successful
  * @retval  #APP_MANAGER_ERROR_INVALID_PARAMETER  Invalid parameter
  */
-int app_context_is_sub_app(app_context_h app_context, bool *is_sub_app);
+TIZENFX_STUB_API int STDCALL app_context_is_sub_app(app_context_h app_context, bool *is_sub_app);
 
 /**
  * @brief  Clones the application context handle.
@@ -208,7 +208,7 @@ int app_context_is_sub_app(app_context_h app_context, bool *is_sub_app);
  * @retval  #APP_MANAGER_ERROR_INVALID_PARAMETER  Invalid parameter
  * @retval  #APP_MANAGER_ERROR_OUT_OF_MEMORY      Out of memory
  */
-int app_context_clone(app_context_h *clone, app_context_h app_context);
+TIZENFX_STUB_API int STDCALL app_context_clone(app_context_h *clone, app_context_h app_context);
 
 
 /**

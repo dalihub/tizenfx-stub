@@ -7,3 +7,4 @@ install_manifest.txt
 *.so.0
 *.so.1
 *~
+build/

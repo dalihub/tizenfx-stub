@@ -19,6 +19,7 @@
 #define __TIZEN_APPFW_APP_INFO_H
 
 //#include <tizen.h>
+#include "tizenfx_stub_api.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -174,7 +175,7 @@ typedef bool (*app_info_category_cb) (const char *category, void *user_data);
  * @see app_manager_foreach_app_info()
  * @see app_manager_get_app_info()
  */
-int app_info_create(const char *app_id, app_info_h *app_info);
+TIZENFX_STUB_API int STDCALL app_info_create(const char *app_id, app_info_h *app_info);
 
 /**
  * @brief  Destroys the application information handle and releases all its resources.
@@ -187,7 +188,7 @@ int app_info_create(const char *app_id, app_info_h *app_info);
  * @see app_manager_foreach_app_info()
  * @see app_manager_get_app_info()
  */
-int app_info_destroy(app_info_h app_info);
+TIZENFX_STUB_API int STDCALL app_info_destroy(app_info_h app_info);
 
 /**
  * @brief  Gets the application ID with the given application context.
@@ -201,7 +202,7 @@ int app_info_destroy(app_info_h app_info);
  * @retval  #APP_MANAGER_ERROR_INVALID_PARAMETER  Invalid parameter
  * @retval  #APP_MANAGER_ERROR_OUT_OF_MEMORY      Out of memory
  */
-int app_info_get_app_id(app_info_h app_info, char **app_id);
+TIZENFX_STUB_API int STDCALL app_info_get_app_id(app_info_h app_info, char **app_id);
 
 /**
  * @brief  Gets the executable path of the application
@@ -215,7 +216,7 @@ int app_info_get_app_id(app_info_h app_info, char **app_id);
  * @retval  #APP_MANAGER_ERROR_INVALID_PARAMETER  Invalid parameter
  * @retval  #APP_MANAGER_ERROR_OUT_OF_MEMORY      Out of memory
  */
-int app_info_get_exec(app_info_h app_info, char **exec);
+TIZENFX_STUB_API int STDCALL app_info_get_exec(app_info_h app_info, char **exec);
 
 /**
  * @brief  Gets the label of the application.
@@ -229,7 +230,7 @@ int app_info_get_exec(app_info_h app_info, char **exec);
  * @retval  #APP_MANAGER_ERROR_INVALID_PARAMETER  Invalid parameter
  * @retval  #APP_MANAGER_ERROR_OUT_OF_MEMORY      Out of memory
  */
-int app_info_get_label(app_info_h app_info, char **label);
+TIZENFX_STUB_API int STDCALL app_info_get_label(app_info_h app_info, char **label);
 
 /**
  * @brief  Gets the localed name of the application.
@@ -244,7 +245,7 @@ int app_info_get_label(app_info_h app_info, char **label);
  * @retval  #APP_MANAGER_ERROR_INVALID_PARAMETER  Invalid parameter
  * @retval  #APP_MANAGER_ERROR_OUT_OF_MEMORY      Out of memory
  */
-int app_info_get_localed_label(const char *app_id, const char *locale, char **label);
+TIZENFX_STUB_API int STDCALL app_info_get_localed_label(const char *app_id, const char *locale, char **label);
 
 /**
  * @brief  Gets the absolute path to the icon image.
@@ -258,7 +259,7 @@ int app_info_get_localed_label(const char *app_id, const char *locale, char **la
  * @retval  #APP_MANAGER_ERROR_INVALID_PARAMETER  Invalid parameter
  * @retval  #APP_MANAGER_ERROR_OUT_OF_MEMORY      Out of memory
  */
-int app_info_get_icon(app_info_h app_info, char **path);
+TIZENFX_STUB_API int STDCALL app_info_get_icon(app_info_h app_info, char **path);
 
 /**
  * @brief  Gets the package name.
@@ -272,7 +273,7 @@ int app_info_get_icon(app_info_h app_info, char **path);
  * @retval  #APP_MANAGER_ERROR_INVALID_PARAMETER  Invalid parameter
  * @retval  #APP_MANAGER_ERROR_OUT_OF_MEMORY      Out of memory
  */
-int app_info_get_package(app_info_h app_info, char **package);
+TIZENFX_STUB_API int STDCALL app_info_get_package(app_info_h app_info, char **package);
 
 /**
  * @brief  Gets the package type name.
@@ -286,7 +287,7 @@ int app_info_get_package(app_info_h app_info, char **package);
  * @retval  #APP_MANAGER_ERROR_INVALID_PARAMETER  Invalid parameter
  * @retval  #APP_MANAGER_ERROR_OUT_OF_MEMORY      Out of memory
  */
-int app_info_get_type(app_info_h app_info, char **type);
+TIZENFX_STUB_API int STDCALL app_info_get_type(app_info_h app_info, char **type);
 
 /**
  * @brief  Gets the application component type.
@@ -301,7 +302,7 @@ int app_info_get_type(app_info_h app_info, char **type);
  * @see #PACKAGE_INFO_PROP_APP_COMPONENT_TYPE
  * @see #app_info_app_component_type_e
  */
-int app_info_get_app_component_type(app_info_h app_info, app_info_app_component_type_e *type);
+TIZENFX_STUB_API int STDCALL app_info_get_app_component_type(app_info_h app_info, app_info_app_component_type_e *type);
 
 /**
  * @brief  Gets the list of metadata for a particular application.
@@ -315,7 +316,7 @@ int app_info_get_app_component_type(app_info_h app_info, app_info_app_component_
  * @retval  #APP_MANAGER_ERROR_INVALID_PARAMETER  Invalid parameter
  * @retval  #APP_MANAGER_ERROR_IO_ERROR           I/O error
  */
-int app_info_foreach_metadata(app_info_h app_info, app_info_metadata_cb callback, void *user_data);
+TIZENFX_STUB_API int STDCALL app_info_foreach_metadata(app_info_h app_info, app_info_metadata_cb callback, void *user_data);
 
 /**
  * @brief  Checks whether application information is nodisplay.
@@ -328,7 +329,7 @@ int app_info_foreach_metadata(app_info_h app_info, app_info_metadata_cb callback
  * @retval  #APP_MANAGER_ERROR_NONE               Successful
  * @retval  #APP_MANAGER_ERROR_INVALID_PARAMETER  Invalid parameter
  */
-int app_info_is_nodisplay(app_info_h app_info, bool *nodisplay);
+TIZENFX_STUB_API int STDCALL app_info_is_nodisplay(app_info_h app_info, bool *nodisplay);
 
 /**
  * @brief  Checks whether two application information are equal.
@@ -342,7 +343,7 @@ int app_info_is_nodisplay(app_info_h app_info, bool *nodisplay);
  * @retval  #APP_MANAGER_ERROR_NONE               Successful
  * @retval  #APP_MANAGER_ERROR_INVALID_PARAMETER  Invalid parameter
  */
-int app_info_is_equal(app_info_h lhs, app_info_h rhs, bool *equal);
+TIZENFX_STUB_API int STDCALL app_info_is_equal(app_info_h lhs, app_info_h rhs, bool *equal);
 
 /**
  * @brief  Checks whether application is enabled.
@@ -355,7 +356,7 @@ int app_info_is_equal(app_info_h lhs, app_info_h rhs, bool *equal);
  * @retval  #APP_MANAGER_ERROR_NONE               Successful
  * @retval  #APP_MANAGER_ERROR_INVALID_PARAMETER  Invalid parameter
  */
-int app_info_is_enabled(app_info_h app_info, bool *enabled);
+TIZENFX_STUB_API int STDCALL app_info_is_enabled(app_info_h app_info, bool *enabled);
 
 /**
  * @brief  Checks whether application is launched on booting time.
@@ -368,7 +369,7 @@ int app_info_is_enabled(app_info_h app_info, bool *enabled);
  * @retval  #APP_MANAGER_ERROR_NONE               Successful
  * @retval  #APP_MANAGER_ERROR_INVALID_PARAMETER  Invalid parameter
  */
-int app_info_is_onboot(app_info_h app_info, bool *onboot);
+TIZENFX_STUB_API int STDCALL app_info_is_onboot(app_info_h app_info, bool *onboot);
 
 /**
  * @brief  Checks whether application is preloaded.
@@ -381,7 +382,7 @@ int app_info_is_onboot(app_info_h app_info, bool *onboot);
  * @retval  #APP_MANAGER_ERROR_NONE               Successful
  * @retval  #APP_MANAGER_ERROR_INVALID_PARAMETER  Invalid parameter
  */
-int app_info_is_preload(app_info_h app_info, bool *preload);
+TIZENFX_STUB_API int STDCALL app_info_is_preload(app_info_h app_info, bool *preload);
 
 /**
  * @brief  Clones the application information handle.
@@ -395,7 +396,7 @@ int app_info_is_preload(app_info_h app_info, bool *preload);
  * @retval  #APP_MANAGER_ERROR_OUT_OF_MEMORY      Out of memory
  * @retval  #APP_MANAGER_ERROR_NO_SUCH_APP        The app is not installed
  */
-int app_info_clone(app_info_h *clone, app_info_h app_info);
+TIZENFX_STUB_API int STDCALL app_info_clone(app_info_h *clone, app_info_h app_info);
 
 /**
  * @platform
@@ -414,7 +415,7 @@ int app_info_clone(app_info_h *clone, app_info_h app_info);
  * @retval  #APP_MANAGER_ERROR_PERMISSION_DENIED  Permission denied
  * @see app_info_create()
  */
-int app_info_foreach_category(app_info_h app_info, app_info_category_cb callback, void *user_data);
+TIZENFX_STUB_API int STDCALL app_info_foreach_category(app_info_h app_info, app_info_category_cb callback, void *user_data);
 
 /**
  * @brief  Creates the application information filter handle from DB.
@@ -428,7 +429,7 @@ int app_info_foreach_category(app_info_h app_info, app_info_category_cb callback
  * @retval  #APP_MANAGER_ERROR_OUT_OF_MEMORY      Out of memory
  * @retval  #APP_MANAGER_ERROR_IO_ERROR           I/O error
  */
-int app_info_filter_create(app_info_filter_h *handle);
+TIZENFX_STUB_API int STDCALL app_info_filter_create(app_info_filter_h *handle);
 
 /**
  * @brief  Destroys the application information filter handle, freeing up all the resources.
@@ -440,7 +441,7 @@ int app_info_filter_create(app_info_filter_h *handle);
  * @retval  #APP_MANAGER_ERROR_INVALID_PARAMETER  Invalid parameter
  * @retval  #APP_MANAGER_ERROR_IO_ERROR           I/O error
  */
-int app_info_filter_destroy(app_info_filter_h handle);
+TIZENFX_STUB_API int STDCALL app_info_filter_destroy(app_info_filter_h handle);
 
 /**
  * @brief  Adds a boolean filter property to the filter handle.
@@ -454,7 +455,7 @@ int app_info_filter_destroy(app_info_filter_h handle);
  * @retval  #APP_MANAGER_ERROR_INVALID_PARAMETER  Invalid parameter
  * @retval  #APP_MANAGER_ERROR_IO_ERROR           I/O error
  */
-int app_info_filter_add_bool(app_info_filter_h handle, const char *property, const bool value);
+TIZENFX_STUB_API int STDCALL app_info_filter_add_bool(app_info_filter_h handle, const char *property, const bool value);
 
 /**
  * @brief  Adds a string filter property to the filter handle.
@@ -468,7 +469,7 @@ int app_info_filter_add_bool(app_info_filter_h handle, const char *property, con
  * @retval  #APP_MANAGER_ERROR_INVALID_PARAMETER  Invalid parameter
  * @retval  #APP_MANAGER_ERROR_IO_ERROR           I/O error
  */
-int app_info_filter_add_string(app_info_filter_h handle, const char *property, const char *value);
+TIZENFX_STUB_API int STDCALL app_info_filter_add_string(app_info_filter_h handle, const char *property, const char *value);
 
 /**
  * @brief  Gets the count of filtered apps.
@@ -481,7 +482,7 @@ int app_info_filter_add_string(app_info_filter_h handle, const char *property, c
  * @retval  #APP_MANAGER_ERROR_INVALID_PARAMETER  Invalid parameter
  * @retval  #APP_MANAGER_ERROR_IO_ERROR           I/O error
  */
-int app_info_filter_count_appinfo(app_info_filter_h handle, int *count);
+TIZENFX_STUB_API int STDCALL app_info_filter_count_appinfo(app_info_filter_h handle, int *count);
 
 /**
  * @brief  Executes the user supplied callback function for each application that satisfy the filter conditions.
@@ -495,7 +496,7 @@ int app_info_filter_count_appinfo(app_info_filter_h handle, int *count);
  * @retval  #APP_MANAGER_ERROR_INVALID_PARAMETER  Invalid parameter
  * @retval  #APP_MANAGER_ERROR_IO_ERROR           I/O error
  */
-int app_info_filter_foreach_appinfo(app_info_filter_h handle, app_info_filter_cb callback, void *user_data);
+TIZENFX_STUB_API int STDCALL app_info_filter_foreach_appinfo(app_info_filter_h handle, app_info_filter_cb callback, void *user_data);
 
 /**
  * @brief  Creates the application's metadata information filter handle from DB.
@@ -508,7 +509,7 @@ int app_info_filter_foreach_appinfo(app_info_filter_h handle, app_info_filter_cb
  * @retval  #APP_MANAGER_ERROR_OUT_OF_MEMORY      Out of memory
  * @retval  #APP_MANAGER_ERROR_IO_ERROR           I/O error
  */
-int app_info_metadata_filter_create(app_info_metadata_filter_h *handle);
+TIZENFX_STUB_API int STDCALL app_info_metadata_filter_create(app_info_metadata_filter_h *handle);
 
 /**
  * @brief  Destroys the application's metadata information filter handle.
@@ -520,7 +521,7 @@ int app_info_metadata_filter_create(app_info_metadata_filter_h *handle);
  * @retval  #APP_MANAGER_ERROR_INVALID_PARAMETER  Invalid parameter
  * @retval  #APP_MANAGER_ERROR_IO_ERROR           I/O error
  */
-int app_info_metadata_filter_destroy(app_info_metadata_filter_h handle);
+TIZENFX_STUB_API int STDCALL app_info_metadata_filter_destroy(app_info_metadata_filter_h handle);
 
 /**
  * @brief  Adds filter condition for the query API.
@@ -536,7 +537,7 @@ int app_info_metadata_filter_destroy(app_info_metadata_filter_h handle);
  * @retval  #APP_MANAGER_ERROR_INVALID_PARAMETER  Invalid parameter
  * @retval  #APP_MANAGER_ERROR_IO_ERROR           I/O error
  */
-int app_info_metadata_filter_add(app_info_metadata_filter_h handle, const char *key, const char *value);
+TIZENFX_STUB_API int STDCALL app_info_metadata_filter_add(app_info_metadata_filter_h handle, const char *key, const char *value);
 
 /**
  * @brief  Executes the filter query.
@@ -553,7 +554,7 @@ int app_info_metadata_filter_add(app_info_metadata_filter_h handle, const char *
  * @retval  #APP_MANAGER_ERROR_INVALID_PARAMETER  Invalid parameter
  * @retval  #APP_MANAGER_ERROR_IO_ERROR           I/O error
  */
-int app_info_metadata_filter_foreach(app_info_metadata_filter_h handle, app_info_filter_cb callback, void *user_data);
+TIZENFX_STUB_API int STDCALL app_info_metadata_filter_foreach(app_info_metadata_filter_h handle, app_info_filter_cb callback, void *user_data);
 
 
 /**
