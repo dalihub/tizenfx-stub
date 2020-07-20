@@ -18,8 +18,7 @@
 #ifndef __TIZEN_APPFW_APP_CONTEXT_H
 #define __TIZEN_APPFW_APP_CONTEXT_H
 
-#include <sys/types.h>
-#include <tizen.h>
+#include "unix_types.h"
 
 #define TIZEN_DEPRECATED_API
 

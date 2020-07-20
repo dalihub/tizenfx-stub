@@ -14,15 +14,17 @@
  * limitations under the License.
  */
 
-
+#ifdef __linux__
 #include <linux/limits.h>
+#endif
+
 #define _GNU_SOURCE
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 
-#define TIZEN_PATH_MAX PATH_MAX
-
+#include "tizenfx_stub_api.h"
+#include "asprintf.h"
 
 typedef enum
 {
@@ -86,9 +88,9 @@ struct app_event_info
 typedef struct app_event_info *app_event_info_h;
 
 
-int app_get_id(char **id)
+TIZENFX_STUB_API int app_get_id(char **id)
 {
-  static char id_buf[TIZEN_PATH_MAX] = {'A','p','p','\0'};
+  static char id_buf[] = {'A','p','p','\0'};
 
   if( id != NULL )
   {
@@ -98,9 +100,9 @@ int app_get_id(char **id)
   return APP_ERROR_INVALID_PARAMETER;
 }
 
-int app_get_name(char **name)
+TIZENFX_STUB_API int app_get_name(char **name)
 {
-  static char namebuf[TIZEN_PATH_MAX] = {'A','p','p','\0'};
+  static char namebuf[] = {'A','p','p','\0'};
   if( name != NULL )
   {
     *name = strdup(namebuf);
@@ -108,69 +110,69 @@ int app_get_name(char **name)
   return APP_ERROR_INVALID_PARAMETER;
 }
 
-char* app_get_resource_path(void)
+TIZENFX_STUB_API char* app_get_resource_path(void)
 {
   const char* path=getenv("DESKTOP_PREFIX");
+  if (!path)
+      path = "";
   char* out;
   int numChars = asprintf( &out, "%s/share/app", path );
   return out;
 }
 
-char* app_get_data_path(void)
+TIZENFX_STUB_API char* app_get_data_path(void)
 {
   return app_get_resource_path();
 }
 
-char* app_get_cache_path(void)
+TIZENFX_STUB_API char* app_get_cache_path(void)
 {
   return app_get_resource_path();
 }
 
-char* app_get_shared_data_path(void)
+TIZENFX_STUB_API char* app_get_shared_data_path(void)
 {
   return app_get_resource_path();
 }
 
-char* app_get_shared_resource_path(void)
+TIZENFX_STUB_API char* app_get_shared_resource_path(void)
 {
   return app_get_resource_path();
 }
 
-char* app_get_shared_trusted_path(void)
+TIZENFX_STUB_API char* app_get_shared_trusted_path(void)
 {
   return app_get_resource_path();
 }
 
-char* app_get_tep_resource_path(void)
+TIZENFX_STUB_API char* app_get_tep_resource_path(void)
 {
   return app_get_resource_path();
 }
 
-char* app_get_external_cache_path(void)
+TIZENFX_STUB_API char* app_get_external_cache_path(void)
 {
   return app_get_resource_path();
 }
 
-char* app_get_external_data_path(void)
+TIZENFX_STUB_API char* app_get_external_data_path(void)
 {
   return app_get_resource_path();
 }
 
-char* app_get_external_shared_data_path(void)
+TIZENFX_STUB_API char* app_get_external_shared_data_path(void)
 {
   return app_get_resource_path();
 }
 
-int app_get_version(char** version)
+TIZENFX_STUB_API int app_get_version(char** version)
 {
   *version = strdup("1.1.1");
   return APP_ERROR_NONE;
 }
 
-int app_event_get_low_memory_status(app_event_info_h event_info, app_event_low_memory_status_e *status)
+TIZENFX_STUB_API int app_event_get_low_memory_status(app_event_info_h event_info, app_event_low_memory_status_e *status)
 {
-  int ret;
-
   if (event_info == NULL || status == NULL)
     return APP_ERROR_INVALID_PARAMETER;
 
@@ -181,10 +183,8 @@ int app_event_get_low_memory_status(app_event_info_h event_info, app_event_low_m
   return APP_ERROR_NONE;
 }
 
-int app_event_get_low_battery_status(app_event_info_h event_info, app_event_low_battery_status_e *status)
+TIZENFX_STUB_API int app_event_get_low_battery_status(app_event_info_h event_info, app_event_low_battery_status_e *status)
 {
-  int ret;
-
   if (event_info == NULL || status == NULL)
     return APP_ERROR_INVALID_PARAMETER;
 
@@ -195,7 +195,7 @@ int app_event_get_low_battery_status(app_event_info_h event_info, app_event_low_
   return APP_ERROR_NONE;
 }
 
-int app_event_get_language(app_event_info_h event_info, char **lang)
+TIZENFX_STUB_API int app_event_get_language(app_event_info_h event_info, char **lang)
 {
   if (event_info == NULL || event_info->value == NULL || lang == NULL)
     return APP_ERROR_INVALID_PARAMETER;
@@ -208,7 +208,7 @@ int app_event_get_language(app_event_info_h event_info, char **lang)
   return APP_ERROR_NONE;
 }
 
-int app_event_get_region_format(app_event_info_h event_info, char **region)
+TIZENFX_STUB_API int app_event_get_region_format(app_event_info_h event_info, char **region)
 {
   if (event_info == NULL || event_info->value == NULL || region == NULL)
     return APP_ERROR_INVALID_PARAMETER;
@@ -221,13 +221,13 @@ int app_event_get_region_format(app_event_info_h event_info, char **region)
   return APP_ERROR_NONE;
 }
 
-int app_resource_manager_get(app_resource_e type, const char *id, char **path)
+TIZENFX_STUB_API int app_resource_manager_get(app_resource_e type, const char *id, char **path)
 {
   *path=strdup("/tmp/a");
   return APP_ERROR_NONE;
 }
 
-int app_event_get_device_orientation(app_event_info_h event_info, app_device_orientation_e *orientation)
+TIZENFX_STUB_API int app_event_get_device_orientation(app_event_info_h event_info, app_device_orientation_e *orientation)
 {
   if (event_info == NULL || orientation == NULL)
     return APP_ERROR_INVALID_PARAMETER;

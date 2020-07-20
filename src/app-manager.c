@@ -14,13 +14,16 @@
  * limitations under the License.
  */
 
+#include "config.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
-#include <pthread.h>
-#include "app_manager_internal.h"
 
+#ifdef HAVE_UNISTD_H
+#include <unistd.h>
+#endif
+
+#include "app_manager_internal.h"
 
 struct app_context_s
 {
