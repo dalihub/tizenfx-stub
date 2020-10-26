@@ -42,10 +42,11 @@
 #ifndef __PKG_MANAGER_H__
 #define __PKG_MANAGER_H__
 
+#include "unix_types.h"
+
 #include <errno.h>
 #include <stdbool.h>
 #include <stdio.h>
-#include <sys/types.h>
 
 #ifdef __cplusplus
 extern "C" {

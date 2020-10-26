@@ -17,10 +17,14 @@
 #ifndef __TIZEN_APPFW_APP_MANAGER_H
 #define __TIZEN_APPFW_APP_MANAGER_H
 
+#include "unix_types.h"
+
 #include <tizen.h>
 
 #include <app_context.h>
 #include <app_info.h>
+
+#include "tizenfx_stub_api.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -162,14 +166,14 @@ typedef bool (*app_manager_app_info_cb) (app_info_h app_info, void *user_data);
  * @see app_manager_unset_app_context_event_cb()
  * @see app_manager_app_context_event_cb()
  */
-int app_manager_set_app_context_event_cb(app_manager_app_context_event_cb callback, void *user_data);
+TIZENFX_STUB_API int app_manager_set_app_context_event_cb(app_manager_app_context_event_cb callback, void *user_data);
 
 /**
  * @brief   Unregisters the callback function.
  * @since_tizen @if MOBILE 2.4 @elseif WEARABLE 3.0 @endif
  * @see app_manager_app_context_event_cb()
  */
-void app_manager_unset_app_context_event_cb(void);
+TIZENFX_STUB_API void app_manager_unset_app_context_event_cb(void);
 
 /**
  * @brief  Retrieves all application contexts of running applications.
@@ -185,7 +189,7 @@ void app_manager_unset_app_context_event_cb(void);
  * @see app_manager_app_context_cb()
  * @remarks  In case of ui applications, sub apps in application groups will not be shown.
  */
-int app_manager_foreach_app_context(app_manager_app_context_cb callback, void *user_data);
+TIZENFX_STUB_API int app_manager_foreach_app_context(app_manager_app_context_cb callback, void *user_data);
 
 
 /**
@@ -203,7 +207,7 @@ int app_manager_foreach_app_context(app_manager_app_context_cb callback, void *u
  * @post   This function invokes app_manager_app_context_cb() for each application context.
  * @see app_manager_app_context_cb()
  */
-int app_manager_foreach_running_app_context(app_manager_app_context_cb callback, void *user_data);
+TIZENFX_STUB_API int app_manager_foreach_running_app_context(app_manager_app_context_cb callback, void *user_data);
 
 
 /**
@@ -220,7 +224,7 @@ int app_manager_foreach_running_app_context(app_manager_app_context_cb callback,
  * @retval  #APP_MANAGER_ERROR_OUT_OF_MEMORY      Out of memory
  * @retval  #APP_MANAGER_ERROR_NO_SUCH_APP        No such application
  */
-int app_manager_get_app_context(const char *app_id, app_context_h *app_context);
+TIZENFX_STUB_API int app_manager_get_app_context(const char *app_id, app_context_h *app_context);
 
 /**
  * @brief  Gets the ID of the application for the given process ID.
@@ -235,7 +239,7 @@ int app_manager_get_app_context(const char *app_id, app_context_h *app_context);
  * @retval  #APP_MANAGER_ERROR_INVALID_PARAMETER  Invalid parameter
  * @retval  #APP_MANAGER_ERROR_OUT_OF_MEMORY      Out of memory
  */
-int app_manager_get_app_id(pid_t pid, char **app_id);
+TIZENFX_STUB_API int app_manager_get_app_id(pid_t pid, char **app_id);
 
 /**
  * @brief  Checks whether the application with the given ID of the application is running.
@@ -248,7 +252,7 @@ int app_manager_get_app_id(pid_t pid, char **app_id);
  * @retval  #APP_MANAGER_ERROR_NONE               Successful
  * @retval  #APP_MANAGER_ERROR_INVALID_PARAMETER  Invalid parameter
  */
-int app_manager_is_running(const char *app_id, bool *running);
+TIZENFX_STUB_API int app_manager_is_running(const char *app_id, bool *running);
 
 /**
  * @brief  Resumes the application.
@@ -264,7 +268,7 @@ int app_manager_is_running(const char *app_id, bool *running);
  * @retval  #APP_MANAGER_ERROR_REQUEST_FAILED     Internal resume error
  * @retval  #APP_MANAGER_ERROR_PERMISSION_DENIED  Permission denied
  */
-int app_manager_resume_app(app_context_h app_context);
+TIZENFX_STUB_API int app_manager_resume_app(app_context_h app_context);
 
 /**
  * @brief  Terminates the back ground application.\n
@@ -282,7 +286,7 @@ int app_manager_resume_app(app_context_h app_context);
  * @retval  #APP_MANAGER_ERROR_REQUEST_FAILED  Failed to send terminate request
  * @retval #APP_MANAGER_ERROR_PERMISSION_DENIED Permission denied
  */
-int app_manager_request_terminate_bg_app(app_context_h app_context);
+TIZENFX_STUB_API int app_manager_request_terminate_bg_app(app_context_h app_context);
 
 /**
  * @brief  Retrieves all installed applications information.
@@ -296,7 +300,7 @@ int app_manager_request_terminate_bg_app(app_context_h app_context);
  * @post    This function invokes app_manager_app_info_cb() for each application information.
  * @see app_manager_app_info_cb()
  */
-int app_manager_foreach_app_info(app_manager_app_info_cb callback, void *user_data);
+TIZENFX_STUB_API int app_manager_foreach_app_info(app_manager_app_info_cb callback, void *user_data);
 
 /**
  * @brief  Gets the application information for the given application ID.
@@ -311,7 +315,7 @@ int app_manager_foreach_app_info(app_manager_app_info_cb callback, void *user_da
  * @retval  #APP_MANAGER_ERROR_OUT_OF_MEMORY      Out of memory
  * @retval  #APP_MANAGER_ERROR_NO_SUCH_APP        No such application
  */
-int app_manager_get_app_info(const char *app_id, app_info_h *app_info);
+TIZENFX_STUB_API int app_manager_get_app_info(const char *app_id, app_info_h *app_info);
 
 /**
  * @brief  Gets the absolute path to the shared data directory of the application specified
@@ -333,7 +337,7 @@ int app_manager_get_app_info(const char *app_id, app_info_h *app_info);
  * @retval  #APP_MANAGER_ERROR_OUT_OF_MEMORY      Out of memory
  * @retval  #APP_MANAGER_ERROR_NOT_SUPPORTED    Not supported
  */
-int app_manager_get_shared_data_path(const char *app_id, char **path);
+TIZENFX_STUB_API int app_manager_get_shared_data_path(const char *app_id, char **path);
 
 /**
  * @brief  Gets the absolute path to the shared resource directory of the application specified
@@ -352,7 +356,7 @@ int app_manager_get_shared_data_path(const char *app_id, char **path);
  * @retval  #APP_MANAGER_ERROR_NO_SUCH_APP        No such application
  * @retval  #APP_MANAGER_ERROR_OUT_OF_MEMORY      Out of memory
  */
-int app_manager_get_shared_resource_path(const char *app_id, char **path);
+TIZENFX_STUB_API int app_manager_get_shared_resource_path(const char *app_id, char **path);
 
 /**
  * @brief  Gets the absolute path to the shared trusted directory of the application specified
@@ -372,7 +376,7 @@ int app_manager_get_shared_resource_path(const char *app_id, char **path);
  * @retval  #APP_MANAGER_ERROR_NO_SUCH_APP        No such application
  * @retval  #APP_MANAGER_ERROR_OUT_OF_MEMORY      Out of memory
  */
-int app_manager_get_shared_trusted_path(const char *app_id, char **path);
+TIZENFX_STUB_API int app_manager_get_shared_trusted_path(const char *app_id, char **path);
 
 /**
  * @deprecated Deprecated since @if MOBILE 2.4 @elseif WEARABLE 3.0 @endif.
@@ -393,7 +397,7 @@ int app_manager_get_shared_trusted_path(const char *app_id, char **path);
  * @retval  #APP_MANAGER_ERROR_NO_SUCH_APP        No such application
  * @retval  #APP_MANAGER_ERROR_OUT_OF_MEMORY      Out of memory
  */
-int app_manager_get_external_shared_data_path(const char *app_id, char **path) TIZEN_DEPRECATED_API;
+TIZENFX_STUB_API int app_manager_get_external_shared_data_path(const char *app_id, char **path) TIZEN_DEPRECATED_API;
 
 /**
  * @brief Creates a app manager event handle.
@@ -410,7 +414,7 @@ int app_manager_get_external_shared_data_path(const char *app_id, char **path) T
  * @retval #APP_MANAGER_ERROR_INVALID_PARAMETER Invalid parameter
  * @see app_manager_event_destroy()
  */
-int app_manager_event_create(app_manager_event_h *handle);
+TIZENFX_STUB_API int app_manager_event_create(app_manager_event_h *handle);
 
 /**
  * @brief Sets the event to handle to listen.
@@ -430,7 +434,7 @@ int app_manager_event_create(app_manager_event_h *handle);
  * @see app_manager_event_status_type_e
  * @see app_manager_set_event_cb()
  */
-int app_manager_event_set_status(app_manager_event_h handle, int status_type);
+TIZENFX_STUB_API int app_manager_event_set_status(app_manager_event_h handle, int status_type);
 
 /**
  * @brief Registers a callback function to be invoked when the app is event has occurred.
@@ -451,7 +455,7 @@ int app_manager_event_set_status(app_manager_event_h handle, int status_type);
  * @see app_manager_event_cb()
  * @see app_manager_unset_event_cb()
  */
-int app_manager_set_event_cb(app_manager_event_h handle,
+TIZENFX_STUB_API int app_manager_set_event_cb(app_manager_event_h handle,
     app_manager_event_cb callback,
     void *user_data);
 
@@ -471,7 +475,7 @@ int app_manager_set_event_cb(app_manager_event_h handle,
  * @see app_manager_event_cb()
  * @see app_manager_set_event_cb()
  */
-int app_manager_unset_event_cb(app_manager_event_h handle);
+TIZENFX_STUB_API int app_manager_unset_event_cb(app_manager_event_h handle);
 
 /**
  * @brief Destroys the app manager event handle.
@@ -488,7 +492,7 @@ int app_manager_unset_event_cb(app_manager_event_h handle);
  *
  * @see app_manager_event_create()
  */
-int app_manager_event_destroy(app_manager_event_h handle);
+TIZENFX_STUB_API int app_manager_event_destroy(app_manager_event_h handle);
 
 /**
  * @platform
@@ -511,7 +515,7 @@ int app_manager_event_destroy(app_manager_event_h handle);
  *
  * @see app_manager_event_create()
  */
-int app_manager_set_app_icon(const char *app_id, const char *icon_path);
+TIZENFX_STUB_API int app_manager_set_app_icon(const char *app_id, const char *icon_path);
 
 /**
  * @}
