@@ -67,7 +67,7 @@ typedef void (*app_manager_app_context_status_cb)(app_context_h app_context, app
  * @retval  #APP_MANAGER_ERROR_REQUEST_FAILED   Internal terminate error
  * @retval  #APP_MANAGER_ERROR_PERMISSION_DENIED  Permission denied
  */
-int app_manager_terminate_app(app_context_h app_context);
+TIZENFX_STUB_API int STDCALL app_manager_terminate_app(app_context_h app_context);
 
 /**
  * @brief Sets the display flag to enable/disable the splash screen.
@@ -85,7 +85,7 @@ int app_manager_terminate_app(app_context_h app_context);
  * @retval  #APP_MANAGER_ERROR_PERMISSION_DENIED  Permission denied
  * @retval  #APP_MANAGER_ERROR_IO_ERROR     Internal I/O error
  */
-int app_manager_set_splash_screen_display(const char *app_id, bool display);
+TIZENFX_STUB_API int STDCALL app_manager_set_splash_screen_display(const char *app_id, bool display);
 
 /*
  * @brief Registers a callback function to be invoked when the application change status.
@@ -102,7 +102,7 @@ int app_manager_set_splash_screen_display(const char *app_id, bool display);
  * @post It will invoke app_manager_app_context_event_cb() when the application is launched or terminated.
  * @see app_manager_app_context_status_cb()
  */
-int app_manager_set_app_context_status_cb(app_manager_app_context_status_cb callback, const char *appid, void *user_data);
+TIZENFX_STUB_API int STDCALL app_manager_set_app_context_status_cb(app_manager_app_context_status_cb callback, const char *appid, void *user_data);
 
 /**
  * @brief  Gets the application context for the given IDs of the application.
@@ -119,7 +119,7 @@ int app_manager_set_app_context_status_cb(app_manager_app_context_status_cb call
  * @retval  #APP_MANAGER_ERROR_OUT_OF_MEMORY      Out of memory
  * @retval  #APP_MANAGER_ERROR_NO_SUCH_APP        No such application
  */
-int app_manager_get_app_context_by_instance_id(const char *app_id, const char *instance_id, app_context_h *app_context);
+TIZENFX_STUB_API int STDCALL app_manager_get_app_context_by_instance_id(const char *app_id, const char *instance_id, app_context_h *app_context);
 
 /**
  * @brief  Gets the focused application context.
@@ -136,7 +136,7 @@ int app_manager_get_app_context_by_instance_id(const char *app_id, const char *i
  * @retval  #APP_MANAGER_ERROR_OUT_OF_MEMORY      Out of memory
  * @retval  #APP_MANAGER_ERROR_NO_SUCH_APP        No such application
  */
-int app_manager_get_focused_app_context(app_context_h *app_context);
+TIZENFX_STUB_API int STDCALL app_manager_get_focused_app_context(app_context_h *app_context);
 
 /**
  * @brief  Attaches the window of the child application to the window of the parent application.
@@ -150,7 +150,7 @@ int app_manager_get_focused_app_context(app_context_h *app_context);
  * @retval  #APP_MANAGER_ERROR_INVALID_PARAMETER  Invalid parameter
  * @retval  #APP_MANAGER_ERROR_IO_ERROR           Internal I/O error
  */
-int app_manager_attach_window(const char *parent_app_id, const char *child_app_id);
+TIZENFX_STUB_API int STDCALL app_manager_attach_window(const char *parent_app_id, const char *child_app_id);
 
 /**
  * @brief  Detaches the window of the application from its parent window.
@@ -163,7 +163,7 @@ int app_manager_attach_window(const char *parent_app_id, const char *child_app_i
  * @retval  #APP_MANAGER_ERROR_INVALID_PARAMETER  Invalid parameter
  * @retval  #APP_MANAGER_ERROR_IO_ERROR           Internal I/O error
  */
-int app_manager_detach_window(const char *app_id);
+TIZENFX_STUB_API int STDCALL app_manager_detach_window(const char *app_id);
 
 /*
  * @brief Unregisters the callback function.
@@ -176,7 +176,7 @@ int app_manager_detach_window(const char *app_id);
  * @retval  #APP_MANAGER_ERROR_INVALID_PARAMETER  Invalid parameter
  * @see app_manager_app_context_status_cb()
  */
-int app_manager_unset_app_context_status_cb(app_manager_app_context_status_cb callback, const char *appid);
+TIZENFX_STUB_API int STDCALL app_manager_unset_app_context_status_cb(app_manager_app_context_status_cb callback, const char *appid);
 
 /**
  * @brief  Retrieves all application contexts of visible applications.
@@ -192,7 +192,7 @@ int app_manager_unset_app_context_status_cb(app_manager_app_context_status_cb ca
  * @post   This function invokes app_manager_app_context_cb() for each application context.
  * @see app_manager_app_context_cb()
  */
-int app_manager_foreach_visible_app_context(app_manager_app_context_cb callback, void *user_data);
+TIZENFX_STUB_API int STDCALL app_manager_foreach_visible_app_context(app_manager_app_context_cb callback, void *user_data);
 
 /**
  * @}
