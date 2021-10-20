@@ -46,3 +46,8 @@ uint32_t i18n_ulocale_get_lcid(const char *locale_id)
 {
   return 0;
 }
+
+int i18n_ulocale_get_default(const char **locale)
+{
+  return -1;
+}
