@@ -15,16 +15,22 @@
  */
 
 
+#include <string.h>
 #include <inttypes.h>
+
+//from RPI4, Locale=en_US Language=en Script= Country=US Variant= LCID=1033
+const char *dummyCulture = "en-US";
 
 int32_t i18n_ulocale_canonicalize(const char *locale_id, char *name, int32_t name_capacity)
 {
-  return -1;
+  strcpy(name, "en_US");
+  return 1;
 }
 
 int i18n_ulocale_get_language(const char *locale_id, char *language, int32_t language_capacity, int32_t *buf_size_language)
 {
-  return -1;
+  strcpy(language, "en");
+  return 0;
 }
 
 int32_t i18n_ulocale_get_script(const char *locale_id, char *script, int32_t script_capacity)
@@ -34,7 +40,8 @@ int32_t i18n_ulocale_get_script(const char *locale_id, char *script, int32_t scr
 
 int32_t i18n_ulocale_get_country(const char *locale_id, char *country, int32_t country_capacity, int *error)
 {
-  return -1;
+  strcpy(country, "US");
+  return 1;
 }
 
 int32_t i18n_ulocale_get_variant(const char *locale_id, char *variant, int32_t variant_capacity)
@@ -44,10 +51,11 @@ int32_t i18n_ulocale_get_variant(const char *locale_id, char *variant, int32_t v
 
 uint32_t i18n_ulocale_get_lcid(const char *locale_id)
 {
-  return 0;
+  return 1033;
 }
 
 int i18n_ulocale_get_default(const char **locale)
 {
-  return -1;
+  *locale = dummyCulture;
+  return 0;
 }
