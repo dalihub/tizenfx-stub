@@ -14,6 +14,10 @@
  * limitations under the License.
  */
 
+int feedback_initialize()
+{
+  return 0;
+}
 
 int feedback_deinitialize()
 {
