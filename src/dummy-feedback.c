@@ -24,3 +24,7 @@ int feedback_deinitialize()
   return 0;
 }
 
+int feedback_is_supported_pattern()
+{
+  return 0;
+}
