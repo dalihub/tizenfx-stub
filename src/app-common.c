@@ -13,16 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-
+#ifndef WIN32
 #include <linux/limits.h>
+#endif
 #define _GNU_SOURCE
 #include <stdio.h>
+#include <stdarg.h>
 #include <string.h>
 #include <stdlib.h>
 
-#define TIZEN_PATH_MAX PATH_MAX
+#ifdef WIN32
+#include "asprintf.h"
+#endif
 
+#ifndef PATH_MAX
+#define PATH_MAX 1024 /* just an extra precaution since there are systems that
+                         have their definition hidden well */
+#endif
+
+#define TIZEN_PATH_MAX PATH_MAX
 
 typedef enum
 {
@@ -107,9 +116,11 @@ int app_get_name(char **name)
   }
   return APP_ERROR_INVALID_PARAMETER;
 }
-
+#ifdef WIN32
+#include <unistd_win.h>
+#else
 #include <unistd.h>
-
+#endif
 char* app_get_resource_path(void)
 {
   char* out = 0;
@@ -117,7 +128,7 @@ char* app_get_resource_path(void)
 
   if( getcwd(cwd, sizeof(cwd)) != 0 )
   {
-    int numChars = asprintf( &out, "%s/res/", cwd );
+    asprintf( &out, "%s/res/", cwd );
   }
   else
   {

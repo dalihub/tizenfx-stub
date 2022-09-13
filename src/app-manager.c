@@ -17,8 +17,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#ifdef WIN32
+#include <unistd_win.h>
+#else
 #include <unistd.h>
-#include <pthread.h>
+#endif
 #include "app_manager_internal.h"
 
 

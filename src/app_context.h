@@ -42,7 +42,9 @@ extern "C" {
  * @since_tizen  @if MOBILE 2.3 @elseif WEARABLE 2.3.1 @endif
  */
 typedef struct app_context_s *app_context_h;
-
+#ifdef WIN32
+typedef int pid_t;
+#endif
 
 /**
  * @brief  Enumeration for Application Context Event.
