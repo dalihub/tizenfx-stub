@@ -170,6 +170,10 @@ typedef struct {
         pkgmgr_updateinfo_type type;
 } pkg_update_info_t;
 
+#ifdef WIN32
+typedef unsigned int uid_t;
+#endif
+
 typedef int (*pkgmgr_iter_fn)(const char *pkg_type, const char *pkgid,
                                 const char *version, void *data);
 

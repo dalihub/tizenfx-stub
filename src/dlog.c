@@ -20,6 +20,9 @@
 #include <stdlib.h>
 #include "dlog.h"
 
+#ifdef WIN32
+#include "asprintf.h"
+#endif
 
 int dlog_print( log_priority prio, const char *tag, const char *fmt, ... )
 {
