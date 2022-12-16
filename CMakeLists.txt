@@ -17,6 +17,7 @@ PROJECT(app_common C)
 SET(CAPI_APPFW_APP_COMMON_SOURCES src/app-common.c)
 SET(CAPI_APPFW_APP_MANAGER_SOURCES src/app-manager.c)
 SET(CAPI_APPFW_THEME_MANAGER_SOURCES src/dummy-theme-manager.c)
+SET(CAPI_SYSTEM_INFO_SOURCES src/dummy-system-info.c)
 SET(CAPI_SYSTEM_SYSTEM_SETTINGS_SOURCES src/dummy-system-system-settings.c)
 SET(DLOG_SOURCES src/dlog.c)
 SET(BASE_UTIL_SOURCES src/dummy-base-util.c)
@@ -78,6 +79,13 @@ TARGET_LINK_LIBRARIES(capi-appfw-tizen-theme ${libpkgs_LDFLAGS})
 SET_TARGET_PROPERTIES(capi-appfw-tizen-theme PROPERTIES SOVERSION ${MAJORVER})
 SET_TARGET_PROPERTIES(capi-appfw-tizen-theme PROPERTIES VERSION ${FULLVER})
 INSTALL(TARGETS capi-appfw-tizen-theme DESTINATION ${LIB_INSTALL_DIR} COMPONENT RuntimeLibraries)
+
+# SYSTEM_INFO
+add_library(capi-system-info SHARED ${CAPI_SYSTEM_INFO_SOURCES})
+TARGET_LINK_LIBRARIES(capi-system-info ${libpkgs_LDFLAGS})
+SET_TARGET_PROPERTIES(capi-system-info PROPERTIES SOVERSION ${MAJORVER})
+SET_TARGET_PROPERTIES(capi-system-info PROPERTIES VERSION ${FULLVER})
+INSTALL(TARGETS capi-system-info DESTINATION ${LIB_INSTALL_DIR} COMPONENT RuntimeLibraries)
 
 # SYSTEM_SETTINGS
 add_library(capi-system-system-settings SHARED ${CAPI_SYSTEM_SYSTEM_SETTINGS_SOURCES})

@@ -15,6 +15,8 @@
  */
 
 #include <stdbool.h>
+#include <string.h>
+#include <stdlib.h>
 
 const int SYSTEM_SETTINGS_ERROR_NONE = 0;
 
@@ -85,6 +87,19 @@ int system_settings_get_value_int(system_settings_key_e key, int *value)
   if(key == SYSTEM_SETTINGS_KEY_FONT_SIZE)
   {
     *value = 1; // FontSize normal
+  }
+  return SYSTEM_SETTINGS_ERROR_NONE;
+}
+int system_settings_get_value_bool(system_settings_key_e key, bool *value)
+{
+  return SYSTEM_SETTINGS_ERROR_NONE;
+}
+int system_settings_get_value_string(system_settings_key_e key, char **value)
+{
+  if(key == SYSTEM_SETTINGS_KEY_FONT_TYPE)
+  {
+	*value = malloc(sizeof(char) * 11);
+	strncpy(*value, "BreezeSans", 11);
   }
   return SYSTEM_SETTINGS_ERROR_NONE;
 }
