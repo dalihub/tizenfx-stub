@@ -1,0 +1,11 @@
+prefix=@PREFIX@
+exec_prefix=@EXEC_DIR@
+libdir=@LIB_INSTALL_DIR@
+includedir=@PREFIX@/include/dlog
+
+Name: DLOG
+Description: Dlog library
+Version: @VERSION@
+Requires:
+Libs: -L${libdir} -ldlog
+Cflags: -I${includedir}
