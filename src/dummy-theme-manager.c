@@ -15,6 +15,8 @@
  */
 
 #include <stdbool.h>
+#include <string.h>
+#include "theme-common.h"
 
 const int ErrorNone = 0;
 const int ErrorInvalidParameter = -22;
@@ -25,7 +27,8 @@ const int ErrorKeyNotAvailable = -126;
 
 int theme_get_id(void* handle, char** id)
 {
-  id = 0;
+  char* id_raw = strdup(ThemeId[CurrentThemeIndex]);
+  *id = id_raw;
   return ErrorNone;
 }
 
@@ -41,6 +44,8 @@ int theme_get_tool_version(void* handle, char** version)
 
 int theme_get_title(void* handle, char** title)
 {
+  char* title_raw = strdup(ThemeTitle[CurrentThemeIndex]);
+  *title = title_raw;
   return ErrorNone;
 }
 

@@ -23,6 +23,7 @@
 #include <unistd.h>
 #endif
 #include "app_manager_internal.h"
+#include "theme-common.h"
 
 
 struct app_context_s
@@ -86,8 +87,6 @@ typedef struct _foreach_category_
   void *user_data;
 } foreach_category_context_s;
 
-
-
 int app_manager_set_app_context_event_cb( app_manager_app_context_event_cb callback, void * user_data)
 {
   return 0;
@@ -139,6 +138,18 @@ int app_manager_foreach_app_info(app_manager_app_info_cb callback, void *user_da
 
 int app_manager_get_app_info(const char * app_id, app_info_h * app_info)
 {
+  if (app_id != 0)
+  {
+    for (int i = 0; i < THEME_COUNT; i++)
+    {
+      if (strcmp(app_id, ThemeId[i]) == 0)
+      {
+        *app_info = (app_info_h)(ThemeId[i]);
+        break;
+      }
+    }
+  }
+
   return 0;
 }
 
@@ -149,6 +160,14 @@ int app_manager_get_shared_data_path (const char *appid, char **path)
 
 int app_manager_get_shared_resource_path (const char *appid, char **path)
 {
+  if (appid != 0)
+  {
+    char dst[200] = {'\0'};
+    strcat(strcat(strcat(strcat(dst, getenv("DESKTOP_PREFIX")), "/"), appid), "/shared/res");
+    char* path_raw = strdup(dst);
+    *path = path_raw;
+  }
+
   return 0;
 }
 
@@ -254,6 +273,13 @@ int app_info_destroy (app_info_h app_info)
 
 int app_info_get_app_id (app_info_h app_info, char **app_id)
 {
+  if (app_info != 0)
+  {
+    const char* convert_p = (const char*)app_info;
+    char* id_raw = strdup(convert_p);
+    *app_id = id_raw;
+  }
+
   return 0;
 }
 

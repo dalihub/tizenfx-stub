@@ -10,7 +10,7 @@ destDir = "/usr/share/dotnet.tizen/framework/res/"
 def clean():
   if not os.path.exists(destDir):
     os.rmdir(destDir)
-    print "Remove {} ...".Format(destDir)
+    print("Remove {} ...".Format(destDir))
 
 def installRes(fxdir):
   if not os.path.exists(destDir):
@@ -28,7 +28,7 @@ def installRes(fxdir):
       sys.exit(path + " is not found")
     copy_tree(path + "/res/", destDir)
   
-  print "Install resources to " + destDir
+  print("Install resources to " + destDir)
   
 
 def main():
@@ -38,7 +38,7 @@ def main():
   args = parser.parse_args()
 
   if os.geteuid() != 0:
-    print "Running sudo..."
+    print("Running sudo...")
     args = ["sudo", sys.executable] + sys.argv + [os.environ]
     os.execlpe("sudo", *args)
 
@@ -47,7 +47,7 @@ def main():
   else:
     installRes(args.fxdir)
 
-  print "Done"
+  print("Done")
 
 if __name__ == "__main__":
   main()
