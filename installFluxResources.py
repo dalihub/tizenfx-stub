@@ -15,9 +15,9 @@ def installRes(src, dst):
   if not path.exists(dst):
     os.makedirs(dst)
 
-  srcItem = path.join(src, "VD_ICONS/")
+  srcItem = path.join(src, "ICONS/")
   if path.exists(srcItem):
-    copy_tree(srcItem, path.join(dst, "VD_ICONS/"))
+    copy_tree(srcItem, path.join(dst, "ICONS/"))
 
   srcItem = path.join(src, "PRINCIPLE/")
   if path.exists(srcItem):
@@ -60,9 +60,9 @@ def main():
   if not path.exists(dstlink): 
     os.symlink(path.join(dstlight, "FLUX"), dstlink)
   
-  dstlink = path.join(dstdark, "VD_ICONS")
+  dstlink = path.join(dstdark, "ICONS")
   if not path.exists(dstlink):
-    os.symlink(path.join(dstlight, "VD_ICONS"), dstlink)
+    os.symlink(path.join(dstlight, "ICONS"), dstlink)
   
   dstlink = path.join(dstdark, "PRINCIPLE")
   if not path.exists(dstlink):
