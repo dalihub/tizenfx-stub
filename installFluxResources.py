@@ -15,7 +15,7 @@ def installRes(src, dst):
   if not path.exists(dst):
     os.makedirs(dst)
 
-  srcItem = path.join(src, "ICONS/")
+  srcItem = path.join(src, "DA_ICONS/")
   if path.exists(srcItem):
     copy_tree(srcItem, path.join(dst, "ICONS/"))
 
