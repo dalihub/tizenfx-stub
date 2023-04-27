@@ -39,3 +39,19 @@ int dlog_print( log_priority prio, const char *tag, const char *fmt, ... )
   va_end(arg);
   return numChars;
 }
+
+int dlog_print_dotnet( log_priority prio, const char *tag, const char *fmt, ... )
+{
+  va_list arg;
+  va_start(arg, fmt);
+  int numChars = 0;
+
+  char *format = NULL;
+  if( asprintf(&format, "%s:\e[21m %s: %s\e[0m", prio==DLOG_INFO?"\e[1;34mINFO":prio==DLOG_WARN?"\e[1;33mWARN":prio==DLOG_ERROR?"\e[1;91mERROR":"", tag, fmt))
+  {
+    numChars = vfprintf(stderr, format, arg);
+    free(format);
+  }
+  va_end(arg);
+  return numChars;
+}
