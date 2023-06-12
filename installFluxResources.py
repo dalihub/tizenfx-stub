@@ -11,21 +11,34 @@ def clean(dir):
     os.rmdir(dir)
     print("Remove {} ...".Format(dir))
 
-def installRes(src, dst):
-  if not path.exists(dst):
-    os.makedirs(dst)
+def copy_resources(srcRoot, srcSub, dstRoot, dstSub):
+  if not path.exists(dstRoot):
+    os.makedirs(dstRoot)
 
-  srcItem = path.join(src, "DA_ICONS/")
+  srcItem = path.join(srcRoot, srcSub)
   if path.exists(srcItem):
-    copy_tree(srcItem, path.join(dst, "ICONS/"))
+    copy_tree(srcItem, path.join(dstRoot, dstSub))
 
-  srcItem = path.join(src, "PRINCIPLE/")
-  if path.exists(srcItem):
-    copy_tree(srcItem, path.join(dst, "PRINCIPLE/"))
-  
-  srcItem = path.join(src, "FLUX/")
-  if path.exists(srcItem):
-    copy_tree(srcItem, path.join(dst, "FLUX/"))
+def make_resource_link(srcRoot, srcSub, dstRoot, dstSub):
+  dstlink = path.join(dstRoot, dstSub)
+  if not path.exists(dstlink): 
+    os.symlink(path.join(srcRoot, srcSub), dstlink)
+
+def merge_json(src1, src2, out):
+  fsrc1 = open(src1, "rt")
+  data1 = fsrc1.read()
+  data1 = data1.replace(']', '')
+  fsrc1.close()
+
+  fsrc2 = open(src2, "rt")
+  data2 = fsrc2.read()
+  data2 = data2.replace('[', ',')
+  fsrc2.close()
+
+  fout = open(out, "wt")
+  fout.write(data1)
+  fout.write(data2)
+  fout.close()
 
 def main():
   parser = argparse.ArgumentParser()
@@ -38,11 +51,11 @@ def main():
   #   os.execlpe("sudo", *args)
 
   if args.p is None:
-    src = path.join(path.dirname(path.abspath(__file__)), "theme")
+    src = path.join(path.dirname(path.abspath(__file__)), "theme/da-common")
     if not path.exists(src):
       sys.exit("Please specify resource package directory with -p option.")
   else:
-    src = path.join(path.abspath(args.p), "theme")
+    src = path.join(path.abspath(args.p), "theme/da-common")
 
   try:
     dst = os.environ['DESKTOP_PREFIX']
@@ -50,23 +63,22 @@ def main():
     sys.exit("Please execute dali-env script first.")
 
   dstlight = path.join(dst, "org.tizen.default-light-theme/shared/res/")
-  installRes(src, dstlight)
-  
   dstdark = path.join(dst, "org.tizen.default-dark-theme/shared/res/")
-  if not path.exists(dstdark):
-    os.makedirs(dstdark)
 
-  dstlink = path.join(dstdark, "FLUX")
-  if not path.exists(dstlink): 
-    os.symlink(path.join(dstlight, "FLUX"), dstlink)
-  
-  dstlink = path.join(dstdark, "ICONS")
-  if not path.exists(dstlink):
-    os.symlink(path.join(dstlight, "ICONS"), dstlink)
-  
-  dstlink = path.join(dstdark, "PRINCIPLE")
-  if not path.exists(dstlink):
-    os.symlink(path.join(dstlight, "PRINCIPLE"), dstlink)
+  copy_resources(src, "DA_ICONS/", dstlight, "ICONS/")
+  copy_resources(src, "PRINCIPLE/", dstlight, "PRINCIPLE/")
+  copy_resources(src, "FLUX/", dstlight, "FLUX/")
+
+  copy_resources(path.join(src, "PRINCIPLE"), "COLOR_TABLE", path.join(dstdark, "PRINCIPLE"), "COLOR_TABLE")
+  make_resource_link(dstlight, "FLUX", dstdark, "FLUX")
+  make_resource_link(dstlight, "ICONS", dstdark, "ICONS")
+  make_resource_link(dstlight, "PRINCIPLE/FLUX", dstdark, "PRINCIPLE/FLUX")
+  make_resource_link(dstlight, "PRINCIPLE/FLUX_HighContrast", dstdark, "PRINCIPLE/FLUX_HighContrast")
+
+  rootname = "PRINCIPLE/COLOR_TABLE/principle_colortable.json"
+  partname = "PRINCIPLE/COLOR_TABLE/principle_colortable_part.json"
+  merge_json(path.join(src, rootname), path.join(src, "../da-bright", partname), path.join(dstlight, rootname))
+  merge_json(path.join(src, rootname), path.join(src, "../da-dark", partname), path.join(dstdark, rootname))
 
   print("Done")
 
