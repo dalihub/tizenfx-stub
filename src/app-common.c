@@ -155,7 +155,19 @@ char* app_get_shared_data_path(void)
 
 char* app_get_shared_resource_path(void)
 {
-  return app_get_resource_path();
+  char* out = 0;
+  char cwd[PATH_MAX];
+
+  if( getcwd(cwd, sizeof(cwd)) != 0 )
+  {
+    asprintf( &out, "%s/shared/res/", cwd );
+  }
+  else
+  {
+    perror("getcwd() error");
+  }
+
+  return out;
 }
 
 char* app_get_shared_trusted_path(void)
