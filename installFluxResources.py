@@ -4,6 +4,7 @@ import os
 import sys
 import argparse
 from distutils.dir_util import copy_tree
+from shutil import copyfile
 from os import path
 
 def clean(dir):
@@ -24,7 +25,7 @@ def make_resource_link(srcRoot, srcSub, dstRoot, dstSub):
   if not path.exists(dstlink): 
     os.symlink(path.join(srcRoot, srcSub), dstlink)
 
-def merge_json(src1, src2, out):
+def merge_json2(src1, src2, out):
   fsrc1 = open(src1, "rt")
   data1 = fsrc1.read()
   data1 = data1.replace(']', '')
@@ -39,6 +40,14 @@ def merge_json(src1, src2, out):
   fout.write(data1)
   fout.write(data2)
   fout.close()
+
+def merge_json3(src1, src2, src3, out):
+  merge_json2(src1, src2, out)
+  merge_json2(out, src3, out)
+
+def merge_json4(src1, src2, src3, src4, out):
+  merge_json3(src1, src2, src3, out)
+  merge_json2(out, src4, out)
 
 def main():
   parser = argparse.ArgumentParser()
@@ -75,10 +84,24 @@ def main():
   make_resource_link(dstlight, "PRINCIPLE/FLUX", dstdark, "PRINCIPLE/FLUX")
   make_resource_link(dstlight, "PRINCIPLE/FLUX_HighContrast", dstdark, "PRINCIPLE/FLUX_HighContrast")
 
-  rootname = "PRINCIPLE/COLOR_TABLE/principle_colortable.json"
-  partname = "PRINCIPLE/COLOR_TABLE/principle_colortable_part.json"
-  merge_json(path.join(src, rootname), path.join(src, "../da-bright", partname), path.join(dstlight, rootname))
-  merge_json(path.join(src, rootname), path.join(src, "../da-dark", partname), path.join(dstdark, rootname))
+  primaryin = ["cold", "neutral", "warm"]
+  primaryout = ["", "_neutral", "_warm"]
+  basename = "PRINCIPLE/COLOR_TABLE/principle_colortable"
+  primaryname = "PRINCIPLE/COLOR_TABLE/primary_"
+  ext = ".json"
+  partext = "_part.json"
+
+  for idx, p in enumerate(primaryin):
+    merge_json4(path.join(src, basename + ext),
+                path.join(src, primaryname + p + ext),
+                path.join(src, "../da-bright", basename + partext),
+                path.join(src, "../da-bright", primaryname + p + partext),
+                path.join(dstdark, basename + primaryout[idx] + ext))
+    merge_json4(path.join(src, basename + ext),
+                path.join(src, primaryname + p + ext),
+                path.join(src, "../da-dark", basename + partext),
+                path.join(src, "../da-dark", primaryname + p + partext),
+                path.join(dstlight, basename + primaryout[idx] + ext))
 
   print("Done")
 
