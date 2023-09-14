@@ -77,31 +77,16 @@ def main():
   copy_resources(src, "DA_ICONS/", dstlight, "ICONS/")
   copy_resources(src, "PRINCIPLE/", dstlight, "PRINCIPLE/")
   copy_resources(src, "FLUX/", dstlight, "FLUX/")
-
   copy_resources(path.join(src, "PRINCIPLE"), "COLOR_TABLE", path.join(dstdark, "PRINCIPLE"), "COLOR_TABLE")
+
+  copyfile(path.join(src, "../da-dark/PRINCIPLE/COLOR_TABLE/do_not_edit_manually_cold.json"), path.join(dstlight, "PRINCIPLE/COLOR_TABLE/principle_colortable.json"))
+  copyfile(path.join(src, "../da-dark/PRINCIPLE/COLOR_TABLE/do_not_edit_manually_neutral.json"), path.join(dstlight, "PRINCIPLE/COLOR_TABLE/principle_colortable_neutral.json"))
+  copyfile(path.join(src, "../da-dark/PRINCIPLE/COLOR_TABLE/do_not_edit_manually_warm.json"), path.join(dstlight, "PRINCIPLE/COLOR_TABLE/principle_colortable_warm.json"))
+
   make_resource_link(dstlight, "FLUX", dstdark, "FLUX")
   make_resource_link(dstlight, "ICONS", dstdark, "ICONS")
   make_resource_link(dstlight, "PRINCIPLE/FLUX", dstdark, "PRINCIPLE/FLUX")
   make_resource_link(dstlight, "PRINCIPLE/FLUX_HighContrast", dstdark, "PRINCIPLE/FLUX_HighContrast")
-
-  primaryin = ["cold", "neutral", "warm"]
-  primaryout = ["", "_neutral", "_warm"]
-  basename = "PRINCIPLE/COLOR_TABLE/principle_colortable"
-  primaryname = "PRINCIPLE/COLOR_TABLE/primary_"
-  ext = ".json"
-  partext = "_part.json"
-
-  for idx, p in enumerate(primaryin):
-    merge_json4(path.join(src, basename + ext),
-                path.join(src, primaryname + p + ext),
-                path.join(src, "../da-bright", basename + partext),
-                path.join(src, "../da-bright", primaryname + p + partext),
-                path.join(dstdark, basename + primaryout[idx] + ext))
-    merge_json4(path.join(src, basename + ext),
-                path.join(src, primaryname + p + ext),
-                path.join(src, "../da-dark", basename + partext),
-                path.join(src, "../da-dark", primaryname + p + partext),
-                path.join(dstlight, basename + primaryout[idx] + ext))
 
   print("Done")
 
