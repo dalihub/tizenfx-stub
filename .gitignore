@@ -8,3 +8,6 @@ install_manifest.txt
 *.so.1
 *~
 *.pc
+.ninja_deps
+.ninja_log
+build.ninja
