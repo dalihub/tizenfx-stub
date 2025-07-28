@@ -16,6 +16,7 @@ PROJECT(app_common C)
 #AUX_SOURCE_DIRECTORY(src SOURCES)
 SET(CAPI_APPFW_APP_COMMON_SOURCES src/app-common.c)
 SET(CAPI_APPFW_APP_MANAGER_SOURCES src/app-manager.c)
+SET(CAPI_APPFW_PREFERENCE_SOURCES src/preference.c)
 SET(CAPI_APPFW_THEME_MANAGER_SOURCES src/dummy-theme-manager.c)
 SET(CAPI_SYSTEM_INFO_SOURCES src/dummy-system-info.c)
 SET(CAPI_SYSTEM_SYSTEM_SETTINGS_SOURCES src/dummy-system-system-settings.c)
@@ -72,6 +73,13 @@ TARGET_LINK_LIBRARIES(capi-appfw-app-manager ${libpkgs_LDFLAGS})
 SET_TARGET_PROPERTIES(capi-appfw-app-manager PROPERTIES SOVERSION ${MAJORVER})
 SET_TARGET_PROPERTIES(capi-appfw-app-manager PROPERTIES VERSION ${FULLVER})
 INSTALL(TARGETS capi-appfw-app-manager DESTINATION ${LIB_INSTALL_DIR} COMPONENT RuntimeLibraries)
+
+# PREFERENCE
+add_library(capi-appfw-preference SHARED ${CAPI_APPFW_PREFERENCE_SOURCES})
+TARGET_LINK_LIBRARIES(capi-appfw-preference ${libpkgs_LDFLAGS})
+SET_TARGET_PROPERTIES(capi-appfw-preference PROPERTIES SOVERSION ${MAJORVER})
+SET_TARGET_PROPERTIES(capi-appfw-preference PROPERTIES VERSION ${FULLVER})
+INSTALL(TARGETS capi-appfw-preference DESTINATION ${LIB_INSTALL_DIR} COMPONENT RuntimeLibraries)
 
 # THEME_MANAGER
 add_library(capi-appfw-tizen-theme SHARED ${CAPI_APPFW_THEME_MANAGER_SOURCES})
