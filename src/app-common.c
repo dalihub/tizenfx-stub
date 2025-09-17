@@ -273,3 +273,18 @@ int app_event_get_device_orientation(app_event_info_h event_info, app_device_ori
 
   return APP_ERROR_NONE;
 }
+
+int app_locale_manager_set_language(const char* lang)
+{
+  return APP_ERROR_NONE;
+}
+
+int app_locale_manager_get_language(char** lang)
+{
+  return APP_ERROR_NONE;
+}
+
+int app_locale_manager_get_system_language(char** lang)
+{
+  return APP_ERROR_NONE;
+}
